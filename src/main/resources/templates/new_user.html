@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<table align="center" border="1" style="background-color: gold">
+    <tbody>
+    <form method="POST" th:action="@{/new_user}">
+        <tr style="background-color: silver">
+            <th><input type="submit" value="CREATE!" style="background-color: gold"/></th>
+            <th><label for="new" id="new">CREATE NEW USER</label></th>
+        </tr>
+        <tr style="background-color: silver">
+            <th><label for="name">name: </label></th>
+            <th><input th:name="name" type="text" id="name"/></th>
+        </tr>
+        <tr style="background-color: silver">
+            <th><label for="surname">surname: </label></th>
+            <th><input th:name="surname" type="text" id="surname"/></th>
+        </tr>
+        <tr style="background-color: silver">
+            <th><label for="login">login: </label></th>
+            <th><input th:name="login" type="text" id="login"/></th>
+        </tr>
+        <tr style="background-color: silver">
+            <th><label for="password">password: </label></th>
+            <th><input th:name="password" type="text" id="password"/></th>
+        </tr>
+        <tr style="background-color: silver">
+            <th><label for="role" id="role">role: </label></th>
+            <th>
+                <label for="user">user:</label>
+                <input th:name="role" type="radio" value="ROLE_USER" checked id="user"/>
+                <label for="admin">admin:</label>
+                <input th:name="role" type="radio" value="ROLE_ADMIN" id="admin"/>
+            </th>
+        </tr>
+    </form>
+    </tbody>
+</table>
+</body>
+</html>

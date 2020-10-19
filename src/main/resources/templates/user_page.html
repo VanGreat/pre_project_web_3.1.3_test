@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User_Page</title>
+</head>
+<body>
+<table align="center" border="1" style="background-color: gold">
+    <tbody>
+    <tr style="background-color: silver">
+        <th align="left" colspan="5">
+            <a th:href="@{/logout}"><input type="submit" value="LOGOUT" style="background-color: gold"></a>
+        </th>
+    </tr>
+    <tr style="background-color: silver">
+        <th><label for="id">ID</label></th>
+        <th><label for="name">NAME</label></th>
+        <th><label for="surname">SURNAME</label></th>
+        <th><label for="login">LOGIN</label></th>
+        <th><label for="password">PASSWORD</label></th>
+    </tr>
+    <tr style="background-color: silver">
+        <td><a th:text="${user.getId()}" id="id">ID</a></td>
+        <td><a th:text="${user.getName()}" id="name">NAME</a></td>
+        <td><a th:text="${user.getSurname()}" id="surname">SURNAME</a></td>
+        <td><a th:text="${user.getLogin()}" id="login">LOGIN</a></td>
+        <td><a th:text="${user.getPasswordConfirm()}" id="password">PASSWORD</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
