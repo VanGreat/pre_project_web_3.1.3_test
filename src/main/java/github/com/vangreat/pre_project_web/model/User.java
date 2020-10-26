@@ -15,14 +15,17 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "firstName")
+    private String firstName;
 
-    @Column(name = "surname")
-    private String surname;
+    @Column(name = "lastName")
+    private String lastName;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "age")
+    private Byte age;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -38,10 +41,11 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String surname, String login, String password) {
-        this.name = name;
-        this.surname = surname;
-        this.login = login;
+    public User(String firstName, String lastName, Byte age, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
         this.password = password;
         this.passwordConfirm = password;
     }
@@ -54,28 +58,36 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getLogin() {
-        return login;
+    public Byte getAge() {
+        return age;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setAge(Byte age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -98,11 +110,10 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    @Override
-    public String toString() {
-        return "User: id = " + id + ", name = " + name + " " + surname
-                + ", login = " + login + ", password = " + passwordConfirm;
-    }
+//    public String getNamesRoles() {
+//        getRoles().stream().filter().iterator().next().getName().
+//        return null;
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -116,7 +127,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
     @Override

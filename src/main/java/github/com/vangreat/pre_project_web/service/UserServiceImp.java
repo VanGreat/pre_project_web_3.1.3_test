@@ -15,18 +15,23 @@ public class UserServiceImp implements UserService {
     private UserDao userDao;
 
     @Override
-    public void createUser(String name, String surname, String login, String password, String role) {
-        userDao.createUser(name, surname, login, password, role);
+    public void createUser(String firstName, String lastName, Byte age, String email, String password, String role) {
+        userDao.createUser(firstName, lastName, age, email, password, role);
     }
 
     @Override
-    public void editUser(User user) {
-        userDao.editUser(user);
+    public void editUser(User user, String role) {
+        userDao.editUser(user, role);
     }
 
     @Override
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
+    }
+
+    @Override
+    public void updateUser(Long id, String firstName, String lastName, Byte age, String email, String password, String role) {
+        userDao.updateUser(id, firstName, lastName, age, email, password, role);
     }
 
     @Override
@@ -40,8 +45,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User getUserByLogin(String login) {
-        return userDao.getUserByLogin(login);
+    public User getUserByEmail(String email) {
+        return userDao.getUserByEmail(email);
     }
 
     @Override

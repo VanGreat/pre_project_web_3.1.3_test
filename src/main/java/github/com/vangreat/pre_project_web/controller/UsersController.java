@@ -16,6 +16,6 @@ public class UsersController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         model.addAttribute("user", user);
-        return "/user_page";
+        return "/admin_panel";
     }
 }

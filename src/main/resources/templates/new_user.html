@@ -13,16 +13,20 @@
             <th><label for="new" id="new">CREATE NEW USER</label></th>
         </tr>
         <tr style="background-color: silver">
-            <th><label for="name">name: </label></th>
-            <th><input th:name="name" type="text" id="name"/></th>
+            <th><label for="firstName">first name: </label></th>
+            <th><input th:name="firstName" type="text" id="firstName"/></th>
         </tr>
         <tr style="background-color: silver">
-            <th><label for="surname">surname: </label></th>
-            <th><input th:name="surname" type="text" id="surname"/></th>
+            <th><label for="lastName">last name: </label></th>
+            <th><input th:name="lastName" type="text" id="lastName"/></th>
         </tr>
         <tr style="background-color: silver">
-            <th><label for="login">login: </label></th>
-            <th><input th:name="login" type="text" id="login"/></th>
+            <th><label for="age">age: </label></th>
+            <th><input th:name="age" type="number" min="0" max="127" id="age"/></th>
+        </tr>
+        <tr style="background-color: silver">
+            <th><label for="email">email: </label></th>
+            <th><input th:name="email" type="text" id="email"/></th>
         </tr>
         <tr style="background-color: silver">
             <th><label for="password">password: </label></th>

@@ -34,23 +34,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.formLogin()
-                .loginPage("/login")
+                .loginPage("/")
                 .successHandler(new LoginSuccessHandler())
-                .loginProcessingUrl("/login")
-                .usernameParameter("login")
+                .loginProcessingUrl("/")
+                .usernameParameter("email")
                 .passwordParameter("password")
                 .permitAll();
 
         http.logout().permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/?logout")
                 .and().csrf().disable();
 
         http.authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/login").anonymous()
-                .antMatchers("/new_user").permitAll().anyRequest().authenticated();
+                .antMatchers("/login").anonymous();
     }
 
     @Bean

@@ -6,9 +6,11 @@ import github.com.vangreat.pre_project_web.model.User;
 import java.util.List;
 
 public interface UserDao {
-    void createUser(String name, String surname, String login, String password, String role);
+    void createUser(String firstName, String lastName, Byte age, String email, String password, String role);
 
-    void editUser(User user);
+    void editUser(User user, String role);
+
+    void updateUser(Long id, String firstName, String lastName, Byte age, String email, String password, String role);
 
     void deleteUser(Long id);
 
@@ -16,7 +18,7 @@ public interface UserDao {
 
     List<User> getAllUsers();
 
-    User getUserByLogin(String login);
+    User getUserByEmail(String email);
 
     Role getRoleByName(String name);
 }

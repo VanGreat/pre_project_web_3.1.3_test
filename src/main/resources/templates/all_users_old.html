@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+</head>
+<body>
+<table align="center" border="1" style="background-color: gold">
+    <tbody>
+    <tr style="background-color: silver">
+        <th>
+            <a th:href="@{/logout}"><input type="submit" value="LOGOUT" style="background-color: gold"></a>
+        </th>
+    </tr>
+    <tr style="background-color: silver">
+        <th colspan="4">
+            <h1>ALL USERS</h1>
+        </th>
+    </tr>
+    <tr style="background-color: silver">
+        <th><label for="name">NAME</label></h4></th>
+        <th><label for="surname">SURNAME</label></th>
+        <th><label for="user_page">USER PAGE</label></th>
+        <th><label for="delete">DELETE</label></th>
+    </tr>
+    <tr th:each="user : ${users}" style="background-color: silver">
+        <td><a th:text="${user.getName()}" id="name">NAME</a></td>
+        <td><a th:text="${user.getSurname()}" id="surname">SURNAME</a></td>
+        <td>
+            <a th:href="@{/admin/{id}(id=${user.getId()})}" id="user_page">
+                <input type="submit" value="SHOW / EDIT" style="background-color: gold"/>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/admin/all_users/remove_user/{id}(id=${user.getId()})}" id="delete">
+                <input type="submit" value="DELETE" style="background-color: gold"/>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

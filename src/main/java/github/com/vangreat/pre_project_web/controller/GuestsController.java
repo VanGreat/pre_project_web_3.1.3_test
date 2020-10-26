@@ -12,7 +12,7 @@ public class GuestsController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String loginIn() {
         return "login";
     }
@@ -23,12 +23,13 @@ public class GuestsController {
     }
 
     @PostMapping("/new_user")
-    public String createUser(@RequestParam("name") String name,
-                             @RequestParam("surname") String surname,
-                             @RequestParam("login") String login,
+    public String createUser(@RequestParam("firstName") String firstName,
+                             @RequestParam("lastName") String lastName,
+                             @RequestParam("age") Byte age,
+                             @RequestParam("email") String email,
                              @RequestParam("password") String password,
                              @RequestParam("role") String role) {
-        userService.createUser(name, surname, login, password, role);
+        userService.createUser(firstName, lastName, age, email, password, role);
         return "redirect:/new_user";
     }
 }
