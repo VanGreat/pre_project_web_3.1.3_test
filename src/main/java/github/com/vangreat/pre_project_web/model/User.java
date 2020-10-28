@@ -110,11 +110,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-//    public String getNamesRoles() {
-//        getRoles().stream().filter().iterator().next().getName().
-//        return null;
-//    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;

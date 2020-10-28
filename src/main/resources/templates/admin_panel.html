@@ -29,18 +29,18 @@
         </li>
     </ul>
 </nav>
-<div class="container-fluid tabs" th:each="rl : ${user.getRoles()}">
+<div class="container-fluid tabs" th:each="rls : ${user.getRoles()}">
     <div class="row">
         <ul class="left_bar nav nav-pills flex-column bg-white mt-2 min-vh-100" >
             <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                <a class="nav-link" th:classappend="${rl.getName() == 'ROLE_ADMIN'}? ' active'" href="#admin" data-toggle="tab">Admin</a>
+                <a class="nav-link" th:classappend="${rls.getName() == 'ROLE_ADMIN'}? ' active'" href="#admin" data-toggle="tab">Admin</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('USER')">
-                <a class="nav-link" th:classappend="${rl.getName() == 'ROLE_USER' && rl.getName() != 'ROLE_ADMIN'}? ' active'" href="#user" data-toggle="tab">User</a>
+                <a class="nav-link" th:classappend="${rls.getName() == 'ROLE_USER'}? ' active'" href="#user" data-toggle="tab">User</a>
             </li>
         </ul>
         <div class="right_bar tab-content bg-light min-vh-100">
-            <div class="tab-pane" id="admin" th:classappend="${rl.getName() == 'ROLE_ADMIN'}? ' active'" sec:authorize="hasRole('ADMIN')">
+            <div class="tab-pane" id="admin" th:classappend="${rls.getName() == 'ROLE_ADMIN'}? ' active'" sec:authorize="hasRole('ADMIN')">
                 <h1 class="font-weight-bold mt-5 ml-5 mb-5">Admin panel</h1>
                 <div class="tabs ml-5 mr-5">
                     <ul class="nav nav-tabs">
@@ -91,7 +91,7 @@
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <div class="form-group col-8 mx-auto">
+                                                            <div class="form-group col-8 mx-auto text-center">
                                                                 <label class="font-weight-bold mt-3" for="idEditUser">ID</label>
                                                                 <input class="form-control form-control-sm" type="text" th:value="${userBD.getId()}" id="idEditUser" disabled>
                                                                 <label class="font-weight-bold mt-3" for="firstNameEditUser">First Name</label>
@@ -127,7 +127,7 @@
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="form-group col-8 mx-auto">
+                                                        <div class="form-group col-8 mx-auto text-center">
                                                             <label class="font-weight-bold mt-3" for="idDeleteUser">ID</label>
                                                             <input class="form-control form-control-sm" type="text" th:value="${userBD.getId()}" id="idDeleteUser" disabled>
                                                             <label class="font-weight-bold mt-3" for="firstNameDeleteUser">First Name</label>
@@ -162,7 +162,7 @@
                         <div class="tab-pane" id="tab-add-new-user">
                             <div class="card-header"><h5 class="font-weight-bold">Add new user</h5></div>
                             <form method="POST" th:action="@{/admin}">
-                                <div class="form-group col-4 mx-auto">
+                                <div class="form-group col-4 mx-auto text-center">
                                     <label class="font-weight-bold mt-3" for="firstNameNewUser">First Name</label>
                                     <input class="form-control form-control-sm" type="text" th:name="firstName" placeholder="First Name" id="firstNameNewUser">
                                     <label class="font-weight-bold mt-3" for="lastNameNewUser">Last Name</label>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="user" th:classappend="${rl.getName() == 'ROLE_USER' && rl.getName() != 'ROLE_ADMIN'}? ' active'" sec:authorize="hasRole('USER')">
+            <div class="tab-pane" id="user" th:classappend="${rls.getName() == 'ROLE_USER'}? ' active'" sec:authorize="hasRole('USER')">
                 <h1 class="font-weight-bold mt-5 ml-5 mb-5">User information-page</h1>
                 <div class="card ml-5 mr-5">
                     <div class="card-header"><h5 class="font-weight-bold">About user</h5></div>
