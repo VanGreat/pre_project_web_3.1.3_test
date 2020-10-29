@@ -29,18 +29,18 @@
         </li>
     </ul>
 </nav>
-<div class="container-fluid tabs" th:each="rls : ${user.getRoles()}">
+<div class="container-fluid tabs">
     <div class="row">
         <ul class="left_bar nav nav-pills flex-column bg-white mt-2 min-vh-100" >
             <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-                <a class="nav-link" th:classappend="${rls.getName() == 'ROLE_ADMIN'}? ' active'" href="#admin" data-toggle="tab">Admin</a>
+                <a class="nav-link" th:classappend="${user.getRoles().size()==2}? 'active'" href="#admin" data-toggle="tab">Admin</a>
             </li>
             <li class="nav-item" sec:authorize="hasRole('USER')">
-                <a class="nav-link" th:classappend="${rls.getName() == 'ROLE_USER'}? ' active'" href="#user" data-toggle="tab">User</a>
+                <a class="nav-link" th:classappend="${user.getRoles().size()!=2}? 'active'" href="#user" data-toggle="tab">User</a>
             </li>
         </ul>
         <div class="right_bar tab-content bg-light min-vh-100">
-            <div class="tab-pane" id="admin" th:classappend="${rls.getName() == 'ROLE_ADMIN'}? ' active'" sec:authorize="hasRole('ADMIN')">
+            <div class="tab-pane" id="admin" th:classappend="${user.getRoles().size()==2}? 'active'" sec:authorize="hasRole('ADMIN')">
                 <h1 class="font-weight-bold mt-5 ml-5 mb-5">Admin panel</h1>
                 <div class="tabs ml-5 mr-5">
                     <ul class="nav nav-tabs">
@@ -185,7 +185,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="user" th:classappend="${rls.getName() == 'ROLE_USER'}? ' active'" sec:authorize="hasRole('USER')">
+            <div class="tab-pane" id="user" th:classappend="${user.getRoles().size()!=2}? 'active'" sec:authorize="hasRole('USER')">
                 <h1 class="font-weight-bold mt-5 ml-5 mb-5">User information-page</h1>
                 <div class="card ml-5 mr-5">
                     <div class="card-header"><h5 class="font-weight-bold">About user</h5></div>
