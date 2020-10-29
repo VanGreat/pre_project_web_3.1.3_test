@@ -20,8 +20,8 @@
 <nav class="container-fluid navbar navbar-static-top navbar-dark bg-dark">
     <div class="navbar-brand d-flex justify-content-start mt-3 ml-3">
         <h5 class="font-weight-bold"><a style="color: #ffffff" th:text="${user.getEmail()}" href="/admin">Email</a></h5>
-        <h5 class="font-weight-light">&nbsp;with roles:</h5>
-        <h5 class="font-weight-light" th:each="role : ${user.getRoles()}" th:text="'&nbsp;' + ${role.getName()}">Role</h5>
+        <h5 class="font-weight-light">&nbsp;with roles:&nbsp;</h5>
+        <h5 class="font-weight-light" th:text="${user.getRoleNames()}">Role</h5>
     </div>
     <ul class="navbar-nav mt-3 mr-3">
         <li class="nav-item text-nowrap">
@@ -75,7 +75,7 @@
                                         <td><label for="lastName" th:text="${userBD.getLastName()}"></label></td>
                                         <td><label for="age" th:text="${userBD.getAge()}"></label></td>
                                         <td><label for="email" th:text="${userBD.getEmail()}"></label></td>
-                                        <td><label for="role" th:each="role : ${userBD.getRoles()}" th:text="'&nbsp;' + ${role.getName()}"></label></td>
+                                        <td><label for="role" th:text="${userBD.getRoleNames()}"></label></td>
                                         <td>
                                             <button class="btn btn-info" type="button" data-toggle="modal" th:data-target="${'#modal-1' + userBD.getId()}">Edit</button>
                                         </td>
@@ -208,7 +208,7 @@
                                 <td><label th:text="${user.getLastName()}"></label></td>
                                 <td><label th:text="${user.getAge()}"></label></td>
                                 <td><label th:text="${user.getEmail()}"></label></td>
-                                <td><label th:each="role : ${user.getRoles()}" th:text="'&nbsp;' + ${role.getName()}"></label></td>
+                                <td><label th:text="${user.getRoleNames()}"></label></td>
                             </tr>
                             </tbody>
                         </table>
