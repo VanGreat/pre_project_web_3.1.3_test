@@ -15,13 +15,13 @@ public class UserServiceImp implements UserService {
     private UserDao userDao;
 
     @Override
-    public void createUser(String firstName, String lastName, Byte age, String email, String password, String role) {
-        userDao.createUser(firstName, lastName, age, email, password, role);
+    public void createUser(User user, String role) {
+        userDao.createUser(user, role);
     }
 
     @Override
-    public void editUser(User user, String role) {
-        userDao.editUser(user, role);
+    public void editUser(Long id, User user, String role) {
+        userDao.editUser(id, user, role);
     }
 
     @Override

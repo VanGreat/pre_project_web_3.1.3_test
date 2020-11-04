@@ -1,5 +1,7 @@
 package github.com.vangreat.pre_project_web.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -9,13 +11,17 @@ import java.util.Set;
 @Table(name = "roles", schema = "pre_project_web")
 public class Role implements GrantedAuthority {
 
+//    @JsonView(Role.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @JsonView(Role.class)
     @Column(name = "name")
     private String name;
 
+//    @JsonBackReference
+//    @JsonView(Role.class)
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 

@@ -6,9 +6,9 @@ import github.com.vangreat.pre_project_web.model.User;
 import java.util.List;
 
 public interface UserService {
-    void createUser(String firstName, String lastName, Byte age, String email, String password, String role);
+    void createUser(User user, String role);
 
-    void editUser(User user, String role);
+    void editUser(Long id, User user, String role);
 
     void updateUser(Long id, String firstName, String lastName, Byte age, String email, String password, String role);
 

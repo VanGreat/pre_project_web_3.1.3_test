@@ -23,33 +23,44 @@ public class UserDaoImp implements UserDao {
 
     @Override
     @Transactional
-    public void createUser(String firstName, String lastName, Byte age, String email, String password, String role) {
-        User user = new User(firstName, lastName, age, email, password);
-        user.setPassword(passwordEncoder.encode(password));
+    public void createUser(User user, String role) {
+        User userNew = new User(
+                user.getFirstName(),
+                user.getLastName(),
+                user.getAge(),
+                user.getEmail(),
+                user.getPassword());
+        userNew.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>());
 
         if (role.equals("ROLE_ADMIN")) {
-            user.getRoles().add(getRoleByName("ROLE_ADMIN"));
-            user.getRoles().add(getRoleByName("ROLE_USER"));
+            userNew.getRoles().add(getRoleByName("ROLE_ADMIN"));
+            userNew.getRoles().add(getRoleByName("ROLE_USER"));
         } else {
-            user.getRoles().add(getRoleByName("ROLE_USER"));
+            userNew.getRoles().add(getRoleByName("ROLE_USER"));
         }
-        entityManager.persist(user);
+        entityManager.persist(userNew);
     }
 
     @Override
     @Transactional
-    public void editUser(User user, String role) {
-        user.setPasswordConfirm(user.getPassword());
-        user.setPassword(passwordEncoder.encode(user.getPasswordConfirm()));
+    public void editUser(Long id, User user, String role) {
+        User userBD = getUser(id);
+        userBD.setFirstName(user.getFirstName());
+        userBD.setLastName(user.getLastName());
+        userBD.setAge(user.getAge());
+        userBD.setEmail(user.getEmail());
+        userBD.setPassword(passwordEncoder.encode(user.getPassword()));
+        userBD.setPasswordConfirm(user.getPassword());
+        userBD.getRoles().clear();
 
         if (role.equals("ROLE_ADMIN")) {
-            user.getRoles().add(getRoleByName("ROLE_ADMIN"));
-            user.getRoles().add(getRoleByName("ROLE_USER"));
+            userBD.getRoles().add(getRoleByName("ROLE_ADMIN"));
+            userBD.getRoles().add(getRoleByName("ROLE_USER"));
         } else {
-            user.getRoles().add(getRoleByName("ROLE_USER"));
+            userBD.getRoles().add(getRoleByName("ROLE_USER"));
         }
-        entityManager.merge(user);
+        entityManager.merge(userBD);
     }
 
     @Override
@@ -95,11 +106,6 @@ public class UserDaoImp implements UserDao {
     public User getUserByEmail(String email) {
         return (User) entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email")
                 .setParameter("email", email).getSingleResult();
-
-//        return getAllUsers().stream()
-//                .filter(user -> user.getEmail().equals(email))
-//                .findFirst()
-//                .get();
     }
 
     @Override

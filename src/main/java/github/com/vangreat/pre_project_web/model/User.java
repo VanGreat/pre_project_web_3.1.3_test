@@ -1,5 +1,7 @@
 package github.com.vangreat.pre_project_web.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,28 +13,37 @@ import java.util.Set;
 @Table(name = "users", schema = "pre_project_web")
 public class User implements UserDetails {
 
+//    @JsonView(User.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @JsonView(User.class)
     @Column(name = "firstName")
     private String firstName;
 
+//    @JsonView(User.class)
     @Column(name = "lastName")
     private String lastName;
 
+//    @JsonView(User.class)
     @Column(name = "age")
     private Byte age;
 
+//    @JsonView(User.class)
     @Column(name = "email")
     private String email;
 
+//    @JsonView(User.class)
     @Column(name = "password")
     private String password;
 
+//    @JsonView(User.class)
     @Column(name = "passwordConfirm")
     private String passwordConfirm;
 
+//    @JsonManagedReference
+//    @JsonView(User.class)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
