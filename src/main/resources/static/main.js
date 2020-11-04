@@ -38,8 +38,8 @@ function getTableAllUsers() {
                             '<td>' + usr.age + '</td>' +
                             '<td>' + usr.email + '</td>' +
                             '<td>' + rls + '</td>' +
-                            '<td><button type="button" onclick="getModalEdit(' + usr.id + ')" class="btn btn-info" data-toggle="modal" data-target="#modal-edit">Edit</button></td>' +
-                            '<td><button type="button" onclick="getModalDelete(' + usr.id + ')" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete">Delete</button></td>' +
+                            '<td><button type="button" onclick="getModalEdit(' + usr.id + ')" class="btn btn-info" data-toggle="modal" data-target="#modal-Edit">Edit</button></td>' +
+                            '<td><button type="button" onclick="getModalDelete(' + usr.id + ')" class="btn btn-danger" data-toggle="modal" data-target="#modal-Delete">Delete</button></td>' +
                             '</tr>';
                     });
                     $('#table_all_users tbody').empty().append(str);
@@ -69,7 +69,7 @@ function getModalDelete(id) {
     });
 }
 
-$("#tab-add-new-user").on('click', (event) => {
+$("#tab-AddNewUser").on('click', (event) => {
     event.preventDefault();
     let user = {
         firstName: $("#firstNameNewUser").val(),
